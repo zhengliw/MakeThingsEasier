@@ -3,23 +3,48 @@
 # MakeThingsEasier - mte
 # A command line utility, more in the README
 
-from os import system
+from os import system # for command running
+from sys import argv  # for command-line arguments
 
-configFile = open("keyconfig.txt", "r") # Open the key config file in read-only mode
-config = dict() # Load configurations
+###
 
-for line in configFile: # for each line in configFile
-    configLine = line.split('=') # read the key and value...
-    config[configLine[0]] = configLine[1] # set key to value
+def runAction(keyconfig, action): # function for running the action
+    '''Runs the action defined by keyconfig.
+    Returns True if action is defined in keyconfig and being run with system(),
+    returns False if action is not defined and not being run with system()'''
+
+    if action != '': # only do something if the user really typed something
+        try:
+            system(keyconfig[action]) # do the action
+        except KeyError: # if the action is not defined
+            print("The action is not defined.")
+            return False
+
+    return True # everything worked lol
+
+###
+
+runFromArgvSuccess = False # initialize as bool
+
+###
+
+keyconfigFile = open("keyconfig.txt", "r") # Open the key keyconfig file in read-only mode
+keyconfig = dict() # Load keyconfigurations
+
+for line in keyconfigFile: # for each line in keyconfigFile
+    keyconfigLine = line.split('=') # read the key and value...
+    keyconfig[keyconfigLine[0]] = keyconfigLine[1] # set key to value
+
+###
+
+if len(argv) != 1: # if there is a command line argument
+    runFromArgvSuccess = runAction(keyconfig, argv[1]) # try to use command line
 
 try:
-    while True:
+    while not runFromArgvSuccess: # if running action from argv failed or no argv passed at all
+                                  # so runFromArgvSuccess stays False
         action = input(">>> ") # get user input to know what the user wants to do
-        if action != '': # only do something if the user really typed something
-            try:
-                system(config[action]) # do the action
-            except KeyError: # if the action is not defined
-                print("The action is not defined.") # screw it
+        runAction(keyconfig, action)
 except KeyboardInterrupt: # if user wants to leave
-    configFile.close() # close file
+    keyconfigFile.close() # close file
     print("\nBye bye :)") # bye guy
