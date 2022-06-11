@@ -1,6 +1,6 @@
 # MakeThingsEasier - mte
 
-A command line utility/python script to speed up your workflow. After a mte shell is opened, just type a letter (afterwards configurable) to open a browser, run a custom python script and more!
+A command line utility/python script to speed up your workflow. After a mte shell is opened, just type a letter/word/whatever man (afterwards configurable) to open a browser, run a custom python script and more!
 
 ## Why this useless script?
 
