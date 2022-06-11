@@ -1,0 +1,9 @@
+# Please always write comments like this in a seperate line
+# or else the comment will be recognised as part of the
+# value
+
+
+# Exit after argv action success
+# 0 to leave the MTE shell open
+# Non-0 to close the MTE shell after a success
+exitAfterArgvSuccess=0

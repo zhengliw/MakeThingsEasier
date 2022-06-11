@@ -8,16 +8,14 @@ Uh.. I hate to touch my mouse, it makes me unprofessional. And I hate having to 
 
 ## How to use?
 
-First, go to keykeyconfig.txt and change the actions according to your needs. On the left side of the equal sign (=), type the shortcut you want and on the right side, type what should be executed in the terminal. **Don't add spaces around the equal sign.** More features upcoming!
+First, go to keykeyconfig.txt and change the actions according to your needs. On the left side of the equal sign (=), type the shortcut you want and on the right side, type what should be executed in the terminal. **Don't add spaces around the equal sign.**
+
+Then, execute main.py (name can vary) to get to the interactive MTE shell to use your defined action shortcuts.
+
+-or-
+
+Directly run an action quickly by simply passing a command-line argument: 'python main.py your-command'. This method closes MTE immediately after a successful action run. I'll call it "Quick Mode".
 
 ## Program logic (v1.1 upwards)
 
-Argv is yes if a command line argument is passed to the script.
-
-Success is yes if the action is defined and could be run
-
-Argv yes, Success yes: The program exits after executing action
-
-Argv yes, Success no: The program shows an error message, then launches the normal mte shell
-
-Argv no, Success yes/no: The program shows the mte shell until the user presses ctrl-c to exit
+Normally, the program will launch the normal MTE shell if the action passed through by the command-line argument isn't defined. This allows you to check if you made typos when using the command-line arguments. You can modify this behavior by going into config.txt and modifying exitAfterArgvSuccess.
