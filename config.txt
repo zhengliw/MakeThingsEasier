@@ -7,3 +7,6 @@
 # 0 to leave the MTE shell open
 # Non-0 to close the MTE shell after a success
 exitAfterArgvSuccess=0
+
+# Show warnings
+showWarnings=0
