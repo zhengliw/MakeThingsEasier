@@ -46,7 +46,7 @@ argumentParser.add_argument(
     "action", action="store", default=None, nargs="*", help="Quick mode action."
 )
 argumentParser.add_argument(
-    "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run."
+    "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run.", dest="configFile"
 )
 
 # Create a namespace object for the parsed args
@@ -57,6 +57,9 @@ argumentNamespace = argumentParser.parse_args()
 # such commands into a list, we will rejoin it back with this line
 # of code.
 argumentNamespace.action = ' '.join(argumentNamespace.action)
+
+# Use the overridden config file
+configFilename = argumentNamespace.configFile
 
 # --------------------
 #    Config parsing
@@ -74,7 +77,7 @@ configParser.optionxform = str
 configParser["config"] = defaultConfig.copy()
 
 # Overwrite default config
-configParser.read("config.txt")
+configParser.read(configFilename)
 
 config = configParser["config"]
 keyconfig = configParser["keyconfig"]
