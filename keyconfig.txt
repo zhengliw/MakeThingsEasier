@@ -1,2 +1,0 @@
-c=start chrome.exe
-git=start chrome.exe github.com

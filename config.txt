@@ -1,12 +1,8 @@
-# Please always write comments like this in a seperate line
-# or else the comment will be recognised as part of the
-# value
+[config]
+exitAfterArgvSuccess = 1
+showIntro = 1
+showWarnings = 0
 
-
-# Exit after argv action success
-# 0 to leave the MTE shell open
-# Non-0 to close the MTE shell after a success
-exitAfterArgvSuccess=0
-
-# Show warnings
-showWarnings=0
+[keyconfig]
+c = start chrome.exe
+git = start chrome.exe github.com
