@@ -43,10 +43,10 @@ argumentParser = argparse.ArgumentParser(
 
 # Create an optional, positional argument for "quick mode" (see README)
 argumentParser.add_argument(
-    "action", action="store", default=None, nargs="*", help="Quick mode action"
+    "action", action="store", default=None, nargs="*", help="Quick mode action."
 )
 argumentParser.add_argument(
-    "--config-file", action="store", default=configFilename, required=False, nargs=1
+    "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run."
 )
 
 # Create a namespace object for the parsed args
@@ -122,7 +122,7 @@ def runAction(action: str):
         return 0
 
 
-commandLine = lib.cmd.Cmd(action=runAction, helpAction=help, intro=__name__)
+commandLine = lib.cmd.Cmd(action=runAction, helpAction=help, intro=__name__, showIntro=(config["showIntro"] == '1'))
 
 # -------------------------
 #    Misc configurations
