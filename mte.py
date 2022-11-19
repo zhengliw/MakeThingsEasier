@@ -48,6 +48,7 @@ argumentParser.add_argument(
 
 # Create an optional, unpositional argument for specifying a config.txt for
 # this run
+# Default is configFilename, at the top of this file
 argumentParser.add_argument(
     "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run.", dest="configFile"
 )
