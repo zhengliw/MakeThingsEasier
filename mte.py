@@ -45,6 +45,9 @@ argumentParser = argparse.ArgumentParser(
 argumentParser.add_argument(
     "action", action="store", default=None, nargs="*", help="Quick mode action."
 )
+
+# Create an optional, unpositional argument for specifying a config.txt for
+# this run
 argumentParser.add_argument(
     "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run.", dest="configFile"
 )
@@ -144,6 +147,7 @@ if config["showWarnings"] == "0":
 # config["exitAfterArgvSuccess"] is set to '1'
 
 try:
+    # Make sure that there is an action at all
     if argumentNamespace.action:
         if runAction(argumentNamespace.action) == 0:
             if config["exitAfterArgvSuccess"] == "1":

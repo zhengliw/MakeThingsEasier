@@ -1,6 +1,11 @@
 [config]
+# Exit after quick mode succeeds
 exitAfterArgvSuccess = 1
+
+# Show intro at the interactive shell
 showIntro = 1
+
+# Show warnings
 showWarnings = 0
 
 [keyconfig]
