@@ -39,6 +39,8 @@ class Cmd:
     except for the help message.
 
     I love Octocats.
+
+    
     """
 
     def __init__(
@@ -46,7 +48,7 @@ class Cmd:
         action,
         helpAction,
         exitAction = exit,
-        intro: str | None = None, 
+        intro: str = "",
         prompt: str = ">>> ",
         showIntro: bool = True,
         helpCommand: tuple = ("?", "help"),

@@ -102,7 +102,7 @@ def help():
     # List all commands in form of:
     # 'command1' 'command2' 'command3'...
     for command in keyconfig:
-        print("'" + command + "'", end=" ")
+        print("'{}'".format(command), end=" ")
 
     # New line
     print("")
