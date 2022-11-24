@@ -24,40 +24,37 @@
 #
 
 
-
 class Cmd:
 
     """
-    A class aiming to imitiate the core functionalities 
+    A class aiming to imitiate the core functionalities
     of the famous Python library cmd. This is not intended
     to replace it in any way, but to be customized for MTE.
 
     The class assumes that all strings that are input on
-    on the command-line interface this class creates will 
+    on the command-line interface this class creates will
     be sent to the same function. This means that all commands
     will be processed by the same function which you define,
     except for the help message.
 
     I love Octocats.
 
-    
+
     """
 
     def __init__(
-        self, 
+        self,
         action,
-        helpAction,
-        exitAction = exit,
         intro: str = "",
         prompt: str = ">>> ",
         showIntro: bool = True,
-        customActions: dir = {}
-        ):
-        
+        customActions: dir = {},
+    ):
+
         """
-        action:     A function that takes one argument which is the 
+        action:     A function that takes one argument which is the
                     command being input, as a string
-        intro:      A string that will be printed when cmdloop is 
+        intro:      A string that will be printed when cmdloop is
                     executed
         prompt:     The prompt for the user
         showIntro:  At the begin of the cmdloop, show intro, helpCommand
@@ -73,9 +70,9 @@ class Cmd:
         self.prompt = prompt
         self.showIntro = showIntro
         self.customActions = customActions
-    
+
     def cmdloop(self):
-        
+
         """
         1. Print the intro if self.showIntro.
 
@@ -100,7 +97,7 @@ class Cmd:
 
                 if userInput in self.customActions:
                     self.customActions[userInput]()
-                elif userInput == '':
+                elif userInput == "":
                     continue
                 else:
                     self.action(userInput)

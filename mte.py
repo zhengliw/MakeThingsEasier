@@ -84,7 +84,7 @@ configFilename = argumentNamespace.configFile
 #    Config parsing
 # --------------------
 
-defaultConfig = {"exitAfterArgvSuccess": 1, "showIntro": 1, "showWarnings": 0}
+defaultConfig = {"exitAfterArgvSuccess": '1', "showIntro": '1', "showWarnings": '0'}
 
 configParser = configparser.ConfigParser()
 
@@ -125,7 +125,7 @@ def help():
 
     # List all commands in form of:
     # 'command1' 'command2' 'command3'...
-    for command in keyconfig:
+    for command in allActions:
         print("'{}'".format(command), end=" ")
 
     # New line
@@ -183,5 +183,9 @@ try:
                 exit(0)
 except ValueError:
     pass
+
+# -------------------------
+#    Start the main code
+# -------------------------
 
 commandLine.cmdloop()
