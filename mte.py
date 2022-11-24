@@ -49,7 +49,13 @@ argumentParser.add_argument(
 # Create an optional, unpositional argument for specifying a config.txt for
 # this run
 argumentParser.add_argument(
-    "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run.", dest="configFile"
+    "--config-file",
+    action="store",
+    default=configFilename,
+    required=False,
+    nargs=1,
+    help="Specify another config file than the default one for this run.",
+    dest="configFile",
 )
 
 # Create a namespace object for the parsed args
@@ -59,7 +65,7 @@ argumentNamespace = argumentParser.parse_args()
 # space-separated command with quick mode. Since argparse writes
 # such commands into a list, we will rejoin it back with this line
 # of code.
-argumentNamespace.action = ' '.join(argumentNamespace.action)
+argumentNamespace.action = " ".join(argumentNamespace.action)
 
 # Use the overridden config file
 configFilename = argumentNamespace.configFile
@@ -89,6 +95,14 @@ keyconfig = configParser["keyconfig"]
 #    Command-line-like interface configuration
 # -----------------------------------------------
 
+# Special actions which are not defined in
+# keyconfig
+customActions = {"help": help, "exit": exit}
+
+# All actions, including the keys in
+# keyconfig
+allActions = list(customActions.keys()) + list(keyconfig.keys())
+
 
 def help():
 
@@ -101,7 +115,7 @@ def help():
 
     # List all commands in form of:
     # 'command1' 'command2' 'command3'...
-    for command in keyconfig:
+    for command in allActions:
         print("'" + command + "'", end=" ")
 
     # New line
@@ -128,7 +142,12 @@ def runAction(action: str):
         return 0
 
 
-commandLine = lib.cmd.Cmd(action=runAction, helpAction=help, intro=__name__, showIntro=(config["showIntro"] == '1'))
+commandLine = lib.cmd.Cmd(
+    runAction,
+    intro=__name__,
+    showIntro=(config["showIntro"] == "1"),
+    customActions={"help": help, "exit": exit},
+)
 
 # -------------------------
 #    Misc configurations
