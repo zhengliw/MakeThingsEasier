@@ -51,36 +51,28 @@ class Cmd:
         intro: str = "",
         prompt: str = ">>> ",
         showIntro: bool = True,
-        helpCommand: tuple = ("?", "help"),
-        exitCommand: tuple = ("exit", "quit")
+        customActions: dir = {}
         ):
         
         """
         action:     A function that takes one argument which is the 
                     command being input, as a string
-        helpAction: A function without arguments that is called when 
-                    one command out of helpCommand is entered
-        exitAction: A function that is called if the command the user
-                    entered is in exitCommand
         intro:      A string that will be printed when cmdloop is 
                     executed
         prompt:     The prompt for the user
         showIntro:  At the begin of the cmdloop, show intro, helpCommand
                     and exitCommand.
-        helpCommand:The commands the user can enter in order to get
-                    help. See helpAction.
-        exitCommand:The commands the user can enter in order to exit
-                    the program. See exitAction.
+        customAction:
+                    A dir [str, function] that consists of custom actions
+                    which will be executed if str is entered. This has
+                    higher priority than self.action.
         """
 
         self.action = action
-        self.helpAction = helpAction
-        self.exitAction = exitAction
         self.intro = intro
         self.prompt = prompt
         self.showIntro = showIntro
-        self.helpCommand = helpCommand
-        self.exitCommand = exitCommand
+        self.customActions = customActions
     
     def cmdloop(self):
         
@@ -90,9 +82,8 @@ class Cmd:
         2. Continously ask for user input, str.strip the user input
         and call cmd.action (which is defined with init).
 
-        3. If the command entered is present in self.helpCommand,
-        self.helpAction is called.
-        The same goes for exitCommand and exitAction.
+        3. If the command entered is present in self.customActions,
+        execute command. Else, self.action is called.
 
         4. Empty lines are skipped.
 
@@ -101,18 +92,14 @@ class Cmd:
 
         if self.showIntro:
             print(self.intro)
-            print("For help, enter one of these commands: " + ', '.join(self.helpCommand))
-            print("To exit, enter one of these commands: " + ', '.join(self.exitCommand))
 
         try:
             while True:
                 userInput = input(self.prompt)
                 userInput = userInput.strip()
 
-                if userInput in self.helpCommand:
-                    self.helpAction()
-                elif userInput in self.exitCommand:
-                    self.exitAction()
+                if userInput in self.customActions:
+                    self.customActions[userInput]()
                 elif userInput == '':
                     continue
                 else:

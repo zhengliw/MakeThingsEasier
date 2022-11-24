@@ -50,7 +50,13 @@ argumentParser.add_argument(
 # this run
 # Default is configFilename, at the top of this file
 argumentParser.add_argument(
-    "--config-file", action="store", default=configFilename, required=False, nargs=1, help="Specify another config file than the default one for this run.", dest="configFile"
+    "--config-file",
+    action="store",
+    default=configFilename,
+    required=False,
+    nargs=1,
+    help="Specify another config file than the default one for this run.",
+    dest="configFile",
 )
 
 # Create a namespace object for the parsed args
@@ -95,6 +101,14 @@ keyconfig = configParser["keyconfig"]
 #    Command-line-like interface configuration
 # -----------------------------------------------
 
+# Special actions which are not defined in
+# keyconfig
+customActions = {"help": help, "exit": exit}
+
+# All actions, including the keys in
+# keyconfig
+allActions = list(customActions.keys()) + list(keyconfig.keys())
+
 
 def help():
 
@@ -134,7 +148,12 @@ def runAction(action: str):
         return 0
 
 
-commandLine = lib.cmd.Cmd(action=runAction, helpAction=help, intro=__name__, showIntro=(config["showIntro"] == '1'))
+commandLine = lib.cmd.Cmd(
+    runAction,
+    intro=__name__,
+    showIntro=(config["showIntro"] == "1"),
+    customActions={"help": help, "exit": exit},
+)
 
 # -------------------------
 #    Misc configurations
