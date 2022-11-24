@@ -18,7 +18,9 @@ First, configure config.txt according to your needs.
 
 Under `[keyconfig]`, go and tweak the shortcuts you want to use. On the left side of the equal sign, write the shortcut. On the right side, write the full command.
 
-Then, either directly use `mte [action]` or just type `mte` to get to an interactive shell, where you can then type the action you want to perform.
+Then, either directly use `mte [action]` for quick mode or just type `mte` to get to an interactive shell, where you can then type the action you want to perform.
+
+Quick mode usually quits the program right after the command is successfully run. This can be changed in config.txt.
 
 # I hate reading code
 

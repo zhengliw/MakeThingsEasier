@@ -48,6 +48,7 @@ argumentParser.add_argument(
 
 # Create an optional, unpositional argument for specifying a config.txt for
 # this run
+# Default is configFilename, at the top of this file
 argumentParser.add_argument(
     "--config-file",
     action="store",
@@ -115,8 +116,8 @@ def help():
 
     # List all commands in form of:
     # 'command1' 'command2' 'command3'...
-    for command in allActions:
-        print("'" + command + "'", end=" ")
+    for command in keyconfig:
+        print("'{}'".format(command), end=" ")
 
     # New line
     print("")

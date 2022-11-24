@@ -39,12 +39,16 @@ class Cmd:
     except for the help message.
 
     I love Octocats.
+
+    
     """
 
     def __init__(
         self, 
         action,
-        intro: str | None = None, 
+        helpAction,
+        exitAction = exit,
+        intro: str = "",
         prompt: str = ">>> ",
         showIntro: bool = True,
         customActions: dir = {}
