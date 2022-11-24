@@ -57,9 +57,14 @@ argumentParser.add_argument(
 argumentNamespace = argumentParser.parse_args()
 
 # There are cases where you might want to execute a multi-parted,
-# space-separated command with quick mode. Since argparse writes
-# such commands into a list, we will rejoin it back with this line
-# of code.
+# space-separated command with quick mode. 
+# 
+# e.g. "mte.py chrome start"...
+# ...if there is the following line in config.txt: 
+# "chrome start = start chrome.exe"
+# 
+# Since argparse writes such commands into a list, we will rejoin 
+# it back with this line of code.
 argumentNamespace.action = ' '.join(argumentNamespace.action)
 
 # Use the overridden config file
