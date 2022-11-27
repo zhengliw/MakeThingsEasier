@@ -1,5 +1,7 @@
 This file is a work-in-progress file...
 
+The file is currently not accurate. I am going to adjust the code according to the plan described in this file later on.
+
 # Contruction of the application
 
 ### ...(for the next version (v.1.4.0 upwards))
