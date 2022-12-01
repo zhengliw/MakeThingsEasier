@@ -84,7 +84,7 @@ configFilename = argumentNamespace.configFile
 #    Config parsing
 # --------------------
 
-defaultConfig = {"exitAfterArgvSuccess": '1', "showIntro": '1', "showWarnings": '0'}
+defaultConfig = {"exitAfterArgvSuccess": "1", "showIntro": "1", "showWarnings": "0"}
 
 configParser = configparser.ConfigParser()
 
