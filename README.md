@@ -1,3 +1,5 @@
+**Not actively maintained - Just found out there is a bash command called alias**
+
 # MakeThingsEasier - MTE
 
 This is the utility to speeddddd up your workflow!
